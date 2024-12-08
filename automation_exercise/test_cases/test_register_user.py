@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
 
-#from ..credentials import *
 from .. import credentials as c
+from ..delete_user import delete_user
 
 from playwright.sync_api import Page, expect
+
+
+def setup_function():
+    delete_user()
 
 
 def test_register_user(page: Page):
@@ -63,3 +67,9 @@ def test_register_user(page: Page):
 
     expect(page.get_by_text("Account Deleted")).to_be_visible()
     page.get_by_role("link", name="Continue").click()
+
+
+"""
+No teardown function, as the test itself
+ensures that the account is deleted.
+"""
