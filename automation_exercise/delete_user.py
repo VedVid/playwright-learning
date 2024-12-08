@@ -8,7 +8,10 @@ from .credentials import EMAIL_ADDRESS, PASSWORD
 
 def delete_user():
     params = {"email": EMAIL_ADDRESS, "password": PASSWORD}
-    requests.delete(
+    response = requests.delete(
         "https://automationexercise.com/api/deleteAccount",
         data=params
     )
+    data = response.json()
+    assert(data["responseCode"] in [200, 404])
+    assert(data["message"] in ["Account deleted!", "Account not found!"])

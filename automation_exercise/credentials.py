@@ -1,5 +1,6 @@
 USER_NAME = "Ved"
 PASSWORD = "111"
+TITLE = "Mr."
 EMAIL_ADDRESS = "ved@example.com"
 BIRTHDAY_DAY = "1"
 BIRTHDAY_MONTH = "1"

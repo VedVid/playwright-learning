@@ -28,7 +28,7 @@ def test_register_user(page: Page):
     page.get_by_role("button").filter(has_text="Signup").click()
 
     expect(page.get_by_text("Enter Account Information")).to_be_visible()
-    page.get_by_label("Mr.").check()
+    page.get_by_label(c.TITLE).check()
     expect(page.get_by_label("Name *", exact=True)).to_have_value(c.USER_NAME)
     expect(page.get_by_label("Email *", exact=True)).to_have_value(c.EMAIL_ADDRESS)
     page.get_by_label("Password *").click()
