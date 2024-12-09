@@ -15,3 +15,4 @@ def delete_user():
     data = response.json()
     assert(data["responseCode"] in [200, 404])
     assert(data["message"] in ["Account deleted!", "Account not found!"])
+    return (data["responseCode"], data["message"])

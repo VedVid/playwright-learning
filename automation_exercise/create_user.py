@@ -3,7 +3,7 @@
 
 import requests
 
-import credentials as c
+from . import credentials as c
 
 
 def create_user():
@@ -35,3 +35,4 @@ def create_user():
     data = response.json()
     assert(data["responseCode"] in [201, 400])
     assert(data["message"] in ["User created!", "Email already exists!"])
+    return (data["responseCode"], data["message"])
