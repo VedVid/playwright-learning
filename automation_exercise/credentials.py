@@ -15,3 +15,6 @@ STATE = "NY"
 CITY = "New York"
 ZIPCODE = "111-11"
 MOBILE = "111-111-111"
+
+INCORRECT_EMAIL_ADDRESS = "badaddress@baddomain.org"
+INCORRECT_PASSWORD = "12345"
