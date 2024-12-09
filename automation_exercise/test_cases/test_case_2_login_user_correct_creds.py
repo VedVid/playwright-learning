@@ -5,7 +5,7 @@ from .. import credentials as c
 from ..create_user import create_user
 from ..delete_user import delete_user
 
-from playwright.sync_api import Playwright, sync_playwright, expect
+from playwright.sync_api import Playwright, expect
 
 
 def setup_function():
@@ -13,7 +13,7 @@ def setup_function():
     create_user()
 
 
-def run(playwright: Playwright) -> None:
+def test_login_user_correct_creds(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
@@ -34,8 +34,3 @@ def run(playwright: Playwright) -> None:
     # ---------------------
     context.close()
     browser.close()
-
-
-with sync_playwright() as playwright:
-    setup_function()
-    run(playwright)
