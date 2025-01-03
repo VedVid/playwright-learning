@@ -1,11 +1,10 @@
-import re
-from playwright.sync_api import Playwright, sync_playwright, expect
+# -*- coding: utf-8 -*-
 
 
-def run(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-    page = context.new_page()
+from playwright.sync_api import Page, expect
+
+
+def test_contact_us_form(page: Page) -> None:
     page.goto("https://www.automationexercise.com/")
     page.get_by_label("Consent", exact=True).click()
     page.locator("li").filter(has_text="Contact us").click()
@@ -25,11 +24,3 @@ def run(playwright: Playwright) -> None:
     page.get_by_role("button", name="Submit").click()
     expect(page.locator("#contact-page").get_by_text("Success! Your details have")).to_be_visible()
     page.get_by_role("link", name=" Home").click()
-
-    # ---------------------
-    context.close()
-    browser.close()
-
-
-with sync_playwright() as playwright:
-    run(playwright)

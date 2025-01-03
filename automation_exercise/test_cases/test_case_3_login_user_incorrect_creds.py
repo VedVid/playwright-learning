@@ -3,13 +3,10 @@
 
 from .. import credentials as c
 
-from playwright.sync_api import Playwright, expect
+from playwright.sync_api import Page, expect
 
 
-def test_login_user_incorrect_creds(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-    page = context.new_page()
+def test_login_user_incorrect_creds(page: Page) -> None:
     page.goto("https://www.automationexercise.com/")
     page.get_by_label("Consent", exact=True).click()
     page.locator("li").filter(has_text="Signup / Login").click()
@@ -19,7 +16,3 @@ def test_login_user_incorrect_creds(playwright: Playwright) -> None:
     page.get_by_placeholder("Password").fill(c.INCORRECT_PASSWORD)
     page.get_by_role("button", name="Login").click()
     expect(page.get_by_text("Your email or password is")).to_be_visible()
-
-    # ---------------------
-    context.close()
-    browser.close()

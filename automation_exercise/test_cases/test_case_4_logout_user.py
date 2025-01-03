@@ -6,7 +6,7 @@ from ..create_user import create_user
 from ..delete_user import delete_user
 
 import re
-from playwright.sync_api import Playwright, expect
+from playwright.sync_api import Page, expect
 
 
 def setup_function():
@@ -14,10 +14,7 @@ def setup_function():
     create_user()
 
 
-def test_logout_user(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context()
-    page = context.new_page()
+def test_logout_user(page: Page) -> None:
     page.goto("https://automationexercise.com/")
     page.get_by_label("Consent", exact=True).click()
     expect(page.locator("body")).to_be_visible()
@@ -31,11 +28,3 @@ def test_logout_user(playwright: Playwright) -> None:
     expect(page.locator("li").filter(has_text=f"Logged in as {c.USER_NAME}")).to_be_visible()
     page.locator("li").filter(has_text="Logout").click()
     expect(page).to_have_url(re.compile("automationexercise.com/login"))
-
-    # ---------------------
-    context.close()
-    browser.close()
-
-
-def teardown_function():
-    delete_user()

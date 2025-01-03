@@ -14,7 +14,7 @@ def setup_function():
 
 
 def test_login_user_correct_creds(playwright: Playwright) -> None:
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://automationexercise.com/")
