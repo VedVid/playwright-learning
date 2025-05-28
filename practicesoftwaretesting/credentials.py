@@ -29,10 +29,22 @@ USER_CUSTOMER_2: Dict[str, str] = {
 }
 
 
+USER_FIELDS = ["name", "surname", "role", "email", "password"]
+
+
+def get_user_data(user: Dict[str, str], data: str):
+    if not data:
+        raise ValueError("Data type to be returned is not specified.")
+    if data not in USER_FIELDS:
+        raise ValueError("Specified data type to be returned is incorrect.")
+
+    return user[data]
+
+
 VERSIONS = ["1", "2", "3", "4", "5", "5 (with bugs)"]
 
 
-def return_url_data(version: str):
+def get_url_data(version: str):
     if version not in VERSIONS:
         raise ValueError("Incorrect version string passed.")
 
