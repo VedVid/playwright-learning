@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
+from .. import actions as a
 from .. import credentials as c
-from ..fill_new_user_form import fill_and_confirm as fill_form
 from ..delete_user import delete_user
 
 from playwright.sync_api import Page, expect
@@ -28,7 +28,7 @@ def test_register_user(page: Page):
     page.locator("form").filter(has_text="Signup").get_by_placeholder("Email Address").fill(c.EMAIL_ADDRESS)
     page.get_by_role("button").filter(has_text="Signup").click()
 
-    fill_form(page)
+    a.new_user_form_fill_and_confirm(page)
 
     expect(page.get_by_text("Account Created")).to_be_visible()
     page.get_by_role("link", name="Continue").click()

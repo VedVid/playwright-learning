@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
 
+from .. import actions as a
+
 from playwright.sync_api import Page, expect
 
 
 def test_verify_all_products(page: Page) -> None:
-    page.goto("https://automationexercise.com/")
-    page.get_by_label("Consent", exact=True).click()
-    expect(page.locator("body")).to_be_visible()
+    a.goto_page(page)
+
     page.locator("li").filter(has_text="Products").click()
     expect(page.get_by_role("heading", name="All Products")).to_be_visible()
     expect(page.locator("body > section:nth-child(3) > div.container > div > div.col-sm-9.padding-right > div")).to_be_visible()

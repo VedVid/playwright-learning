@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 
+from .. import actions as a
 from .. import credentials as c
 
 from playwright.sync_api import Page, expect
 
 
 def test_login_user_incorrect_creds(page: Page) -> None:
-    page.goto("https://www.automationexercise.com/")
-    page.get_by_label("Consent", exact=True).click()
+    a.goto_page(page)
     page.locator("li").filter(has_text="Signup / Login").click()
     page.locator("form").filter(has_text="Login").get_by_placeholder("Email Address").click()
     page.locator("form").filter(has_text="Login").get_by_placeholder("Email Address").fill(c.INCORRECT_EMAIL_ADDRESS)
