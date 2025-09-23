@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from .. import actions as a
+from ..actions import goto_page
 from ..create_user import create_user
 from ..delete_user import delete_user
 
@@ -14,7 +14,7 @@ def setup_function():
 
 
 def test_register_user_with_existing_email(page: Page):
-    a.goto_page(page)
+    goto_page(page)
     page.locator("li").filter(has_text="Signup / Login").click()
     expect(page.get_by_role("heading", name="New User Signup!")).to_be_visible()
     page.get_by_placeholder("Name").click()

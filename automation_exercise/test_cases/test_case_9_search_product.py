@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
 
-from .. import actions as a
-
 import re
+
+from ..actions import goto_page
 
 from playwright.sync_api import Page, expect
 
 
 def test_search_product(page: Page) -> None:
-    a.goto_page(page)
+    goto_page(page)
     page.locator("li").filter(has_text="Products").click()
     expect(page).to_have_url(re.compile("automationexercise.com/products"))
     product_name = page.get_by_text("Blue Top").nth(1).text_content()

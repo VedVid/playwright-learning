@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 
-from .. import actions as a
+from ..actions import goto_page, handle_card_payment, new_user_form_fill_and_confirm
 from .. import credentials as c
 
 from playwright.sync_api import Page, expect
 
 
 def test_place_order_register_before_checkout(page: Page) -> None:
-    a.goto_page(page)
+    goto_page(page)
 
     page.locator("li").filter(has_text="Signup / Login").click()
     page.get_by_placeholder("Name").click()
@@ -17,7 +17,7 @@ def test_place_order_register_before_checkout(page: Page) -> None:
     page.locator("form").filter(has_text="Signup").get_by_placeholder("Email Address").fill(c.EMAIL_ADDRESS)
     page.get_by_role("button", name="Signup").click()
 
-    a.new_user_form_fill_and_confirm(page)
+    new_user_form_fill_and_confirm(page)
     expect(page.get_by_text("Account Created!")).to_be_visible()
     page.get_by_role("link", name="Continue").click()
 
@@ -39,7 +39,7 @@ def test_place_order_register_before_checkout(page: Page) -> None:
     page.locator("textarea[name=\"message\"]").fill("test")
     page.get_by_role("link", name="Place Order").click()
 
-    a.handle_card_payment(page)
+    handle_card_payment(page)
 
     page.locator("li").filter(has_text="Delete Account").click()
     expect(page.get_by_text("Account Deleted!")).to_be_visible()

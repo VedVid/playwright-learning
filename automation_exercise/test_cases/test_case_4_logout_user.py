@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from .. import actions as a
+from ..actions import goto_page, handle_card_payment, new_user_form_fill_and_confirm
 from .. import credentials as c
 from ..create_user import create_user
 from ..delete_user import delete_user
@@ -16,7 +16,7 @@ def setup_function():
 
 
 def test_logout_user(page: Page) -> None:
-    a.goto_page(page)
+    goto_page(page)
     page.locator("li").filter(has_text="Signup / Login").click()
     expect(page.locator("div").filter(has_text="Login to your account Login").nth(2)).to_be_visible()
     page.locator("form").filter(has_text="Login").get_by_placeholder("Email Address").click()

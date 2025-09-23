@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from .. import actions as a
+from ..actions import goto_page, new_user_form_fill_and_confirm
 from .. import credentials as c
 from ..delete_user import delete_user
 
@@ -13,11 +13,7 @@ def setup_function():
 
 
 def test_register_user(page: Page):
-    page.goto("http://automationexercise.com/")
-    expect(page).to_have_title("Automation Exercise")
-    expect(page.get_by_role("heading", name="AutomationExercise")).to_be_visible()
-
-    page.get_by_label("Consent", exact=True).click()
+    goto_page(page)
 
     page.get_by_role("link").filter(has_text="Signup").click()
     expect(page.get_by_role("heading", name="New User Signup!")).to_be_visible()
@@ -28,7 +24,7 @@ def test_register_user(page: Page):
     page.locator("form").filter(has_text="Signup").get_by_placeholder("Email Address").fill(c.EMAIL_ADDRESS)
     page.get_by_role("button").filter(has_text="Signup").click()
 
-    a.new_user_form_fill_and_confirm(page)
+    new_user_form_fill_and_confirm(page)
 
     expect(page.get_by_text("Account Created")).to_be_visible()
     page.get_by_role("link", name="Continue").click()
