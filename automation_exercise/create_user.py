@@ -7,6 +7,19 @@ from . import credentials as c
 
 
 def create_user():
+    '''
+    This function creates a new user by using automationexercise's API.
+    It uses user credentials specified in separate `credentials.py` file.
+
+    Parameters
+    ----------
+    No parameters passed
+
+    Returns
+    -------
+    tuple(integer, string)
+        It contains response code and message returned by API.
+    '''
     params = {
         "name": c.USER_NAME,
         "email": c.EMAIL_ADDRESS,
