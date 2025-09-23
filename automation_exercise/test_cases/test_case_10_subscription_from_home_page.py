@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-from ..actions import goto_page
-
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
 
 
 def test_subscription_from_home_page(page: Page) -> None:

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-from ..actions import goto_page
-
 from playwright.sync_api import Page, expect
 import pytest
+
+from ..actions import goto_page
 
 
 @pytest.mark.skip(reason="This test is bugged, I can't seem to find a way to properly upload a file.")

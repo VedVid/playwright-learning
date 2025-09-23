@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 
-from ..actions import goto_page
-
 import re
+
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
 
 
 def test_visit_test_cases_page(page: Page) -> None:

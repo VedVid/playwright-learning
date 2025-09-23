@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 
-from ..actions import goto_page
-
 import time
+
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
 
 
 def test_example(page: Page) -> None:

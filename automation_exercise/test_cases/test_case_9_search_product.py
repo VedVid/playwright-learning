@@ -3,9 +3,9 @@
 
 import re
 
-from ..actions import goto_page
-
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
 
 
 def test_search_product(page: Page) -> None:

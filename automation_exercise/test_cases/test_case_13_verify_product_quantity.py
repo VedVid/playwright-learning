@@ -3,9 +3,9 @@
 
 import re
 
-from ..actions import goto_page
-
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
 
 
 QUANTITY = "4"

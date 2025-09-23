@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-from ..actions import goto_page, handle_card_payment, new_user_form_fill_and_confirm
-from .. import credentials as c
-
 from playwright.sync_api import Page, expect
+
+from .. import credentials as c
+from ..actions import goto_page, handle_card_payment, new_user_form_fill_and_confirm
 
 
 def test_place_order_register_before_checkout(page: Page) -> None:

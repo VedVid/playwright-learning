@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
+from playwright.sync_api import Page, expect
+
 from ..actions import goto_page
 from .. import credentials as c
-
-from playwright.sync_api import Page, expect
 
 
 def test_login_user_incorrect_creds(page: Page) -> None:

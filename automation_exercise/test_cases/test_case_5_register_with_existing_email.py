@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-from ..actions import goto_page
-from ..create_user import create_user
-from ..delete_user import delete_user
-
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
+from ..user_management import create_user, delete_user
 
 
 def setup_function():
