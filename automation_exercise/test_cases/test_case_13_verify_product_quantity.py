@@ -3,16 +3,16 @@
 
 import re
 
-from .. import actions as a
-
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
 
 
 QUANTITY = "4"
 
 
 def test_verify_product_quantity_in_cart(page: Page) -> None:
-    a.goto_page(page)
+    goto_page(page)
     page.get_by_text("View Product", exact=False).first.click()
     expect(page).to_have_url(re.compile(r".automationexercise.com.product_details.[0-9]+"))
     page.locator("#quantity").click()

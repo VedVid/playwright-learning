@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 
-from .. import actions as a
-
 import time
+
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
 
 
 def test_example(page: Page) -> None:
-    a.goto_page(page)
+    goto_page(page)
 
     page.locator("li").filter(has_text="Products").click()
 

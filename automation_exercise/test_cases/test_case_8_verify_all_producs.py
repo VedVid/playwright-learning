@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 
-from .. import actions as a
-
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
 
 
 def test_verify_all_products(page: Page) -> None:
-    a.goto_page(page)
+    goto_page(page)
 
     page.locator("li").filter(has_text="Products").click()
     expect(page.get_by_role("heading", name="All Products")).to_be_visible()

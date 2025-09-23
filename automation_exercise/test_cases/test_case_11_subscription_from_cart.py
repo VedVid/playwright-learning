@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 
-from .. import actions as a
-
 from playwright.sync_api import Page, expect
+
+from ..actions import goto_page
 
 
 def test_subscription_from_home_page(page: Page) -> None:
-    a.goto_page(page)
+    goto_page(page)
     page.locator("li").filter(has_text="Cart").click()
     expect(page.get_by_role("heading", name="Subscription")).to_be_visible()
     page.get_by_placeholder("Your email address").click()

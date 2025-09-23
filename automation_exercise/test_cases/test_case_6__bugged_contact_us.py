@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
 
-from .. import actions as a
-
 from playwright.sync_api import Page, expect
 import pytest
+
+from ..actions import goto_page
 
 
 @pytest.mark.skip(reason="This test is bugged, I can't seem to find a way to properly upload a file.")
 def test_contact_us_form(page: Page) -> None:
-    a.goto_page(page)
+    goto_page(page)
     page.locator("li").filter(has_text="Contact us").click()
     page.get_by_placeholder("Name").click()
     page.get_by_placeholder("Name").fill("Ved")

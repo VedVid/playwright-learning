@@ -4,22 +4,25 @@
 from playwright.sync_api import Page, expect
 
 from .. import credentials as c
-from ..actions import goto_page, handle_card_payment, new_user_form_fill_and_confirm
+from ..actions import goto_page, handle_card_payment
+from ..user_management import create_user, delete_user
 
 
-def test_place_order_register_before_checkout(page: Page) -> None:
+def setup_function():
+    delete_user()
+    create_user()
+
+
+def test_place_order_login_before_checkout(page: Page) -> None:
     goto_page(page)
 
     page.locator("li").filter(has_text="Signup / Login").click()
-    page.get_by_placeholder("Name").click()
-    page.get_by_placeholder("Name").fill(c.USER_NAME)
-    page.locator("form").filter(has_text="Signup").get_by_placeholder("Email Address").click()
-    page.locator("form").filter(has_text="Signup").get_by_placeholder("Email Address").fill(c.EMAIL_ADDRESS)
-    page.get_by_role("button", name="Signup").click()
-
-    new_user_form_fill_and_confirm(page)
-    expect(page.get_by_text("Account Created!")).to_be_visible()
-    page.get_by_role("link", name="Continue").click()
+    page.locator("form").filter(has_text="Login").get_by_placeholder("Email Address").click()
+    page.locator("form").filter(has_text="Login").get_by_placeholder("Email Address").fill(f"{c.EMAIL_ADDRESS}")
+    page.get_by_placeholder("Password").click()
+    page.get_by_placeholder("Password").fill(f"{c.PASSWORD}")
+    page.get_by_role("button", name="Login").click()
+    expect(page.get_by_text("Logged in as")).to_be_visible()
 
     page.locator(".productinfo > .btn").first.click()
     page.get_by_role("link", name="View Cart").click()
