@@ -7,6 +7,20 @@ from playwright.sync_api import Page, expect
 
 
 def fill_and_confirm(page: Page):
+    '''
+    This function fills a form to create a new user, using credentials
+    specified in separate file `credentials.py`.
+
+    Parameters
+    ----------
+    page : Page
+        Playwright's Page
+
+    Returns
+    -------
+    bool
+        Returns True if no exceptions were encountered; otherwise, returns False.
+    '''
     try:
         expect(page.get_by_text("Enter Account Information")).to_be_visible()
         page.get_by_label(c.TITLE).check()
