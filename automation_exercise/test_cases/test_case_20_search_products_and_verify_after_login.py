@@ -18,14 +18,14 @@ def test_search_products_veryfiry_after_login(page: Page) -> None:
 
     page.locator("li").filter(has_text="Products").click()
 
-    first_featured_product_css_locator = ".features_items > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > p:nth-child(3)"
-    first_product_name = page.locator(first_featured_product_css_locator).text_content()
+    first_featured_product_css = ".features_items > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > p:nth-child(3)"
+    first_product_name = page.locator(first_featured_product_css).text_content()
     expect(page.get_by_text(first_product_name).first).to_be_visible()
 
     page.get_by_placeholder("Search Product").click()
     page.get_by_placeholder("Search Product").fill(first_product_name)
-    search_button_css_locator = "html body section#advertisement div.container button#submit_search.btn.btn-default.btn-lg"
-    page.locator(search_button_css_locator).click()
+    search_button_css = "html body section#advertisement div.container button#submit_search.btn.btn-default.btn-lg"
+    page.locator(search_button_css).click()
     expect(page.get_by_role("heading", name="Searched Products")).to_be_visible()
     expect(page.get_by_text(first_product_name).first).to_be_visible()
     page.get_by_text("Add to cart").first.click()
