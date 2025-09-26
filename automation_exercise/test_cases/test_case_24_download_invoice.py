@@ -32,7 +32,7 @@ def test_download_invoice(page: Page) -> None:
     with page.expect_download() as download_info:
         page.get_by_role("link", name="Download Invoice").click()
     download = download_info.value
-    print(download)
+    assert(download)
 
     page.locator("li").filter(has_text="Delete Account").click()
     page.get_by_role("link", name="Continue").click()
