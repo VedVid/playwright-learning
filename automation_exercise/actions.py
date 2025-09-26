@@ -87,7 +87,7 @@ def new_user_form_fill_and_confirm(page: Page) -> bool:
         return True
 
 
-def handle_card_payment(page: Page) -> None:
+def handle_card_payment(page: Page, should_continue=True) -> None:
     '''
     This function fills a form to required to proceed with payment, using
     credit card data specified in separate file `credentials.py`.
@@ -112,5 +112,6 @@ def handle_card_payment(page: Page) -> None:
     page.get_by_placeholder("YYYY").click()
     page.get_by_placeholder("YYYY").fill(f"{c.CARD_YYYY}")
     page.get_by_role("button", name="Pay and Confirm Order").click()
-    expect(page.get_by_text("Order Placed!")).to_be_visible()
-    page.get_by_role("link", name="Continue").click()
+    if should_continue:
+        expect(page.get_by_text("Order Placed!")).to_be_visible()
+        page.get_by_role("link", name="Continue").click()
