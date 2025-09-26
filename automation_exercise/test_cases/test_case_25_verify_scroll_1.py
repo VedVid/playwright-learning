@@ -6,7 +6,7 @@ from playwright.sync_api import Page, expect
 from ..actions import goto_page
 
 
-def test_example(page: Page) -> None:
+def test_verify_scroll_with_arrow_button(page: Page) -> None:
     goto_page(page)
 
     page.get_by_role("heading", name="Subscription").scroll_into_view_if_needed()
