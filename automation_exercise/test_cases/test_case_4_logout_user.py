@@ -27,3 +27,7 @@ def test_logout_user(page: Page) -> None:
     expect(page.locator("li").filter(has_text=f"Logged in as {c.USER_NAME}")).to_be_visible()
     page.locator("li").filter(has_text="Logout").click()
     expect(page).to_have_url(re.compile("automationexercise.com/login"))
+
+
+def teardown_function():
+    delete_user()
