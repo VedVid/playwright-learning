@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 
-from playwright.sync_api import Page, expect
 import pytest
 
+from playwright.sync_api import Page, expect
+
+from .. import credentials as c
 from ..actions import goto_page
 
 
@@ -12,9 +14,9 @@ def test_contact_us_form(page: Page) -> None:
     goto_page(page)
     page.locator("li").filter(has_text="Contact us").click()
     page.get_by_placeholder("Name").click()
-    page.get_by_placeholder("Name").fill("Ved")
+    page.get_by_placeholder("Name").fill(c.FIRST_NAME)
     page.get_by_placeholder("Email", exact=True).click()
-    page.get_by_placeholder("Email", exact=True).fill("ved@example.com")
+    page.get_by_placeholder("Email", exact=True).fill(c.EMAIL_ADDRESS)
     page.get_by_placeholder("Subject").click()
     page.get_by_placeholder("Subject").fill("Test subject")
     page.get_by_placeholder("Your Message Here").click()

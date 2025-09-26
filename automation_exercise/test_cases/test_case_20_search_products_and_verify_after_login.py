@@ -41,3 +41,7 @@ def test_search_products_veryfiry_after_login(page: Page) -> None:
     page.locator("li").filter(has_text="Cart").click()
     expect(page.get_by_text("Shopping Cart")).to_be_visible()
     expect(page.get_by_text(first_product_name).first).to_be_visible()
+
+
+def teardown_function():
+    delete_user()

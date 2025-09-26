@@ -43,3 +43,7 @@ def test_verify_credentials_during_checkout(page: Page) -> None:
     expect(page.locator("#address_delivery").get_by_text(f"{c.CITY} {c.STATE} {c.ZIPCODE}")).to_be_visible()
     expect(page.locator("#address_delivery").get_by_text(f"{c.COUNTRY}")).to_be_visible()
     expect(page.locator("#address_delivery").get_by_text(f"{c.MOBILE}")).to_be_visible()
+
+
+def teardown_function():
+    delete_user()

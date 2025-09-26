@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from .. import credentials as c
 from ..actions import goto_page, handle_card_payment

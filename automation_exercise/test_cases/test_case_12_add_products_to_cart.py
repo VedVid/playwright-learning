@@ -8,7 +8,7 @@ from playwright.sync_api import Page, expect
 from ..actions import goto_page
 
 
-def test_example(page: Page) -> None:
+def test_add_products_to_cart(page: Page) -> None:
     goto_page(page)
 
     page.locator("li").filter(has_text="Products").click()
