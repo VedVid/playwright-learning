@@ -7,7 +7,7 @@ from .. import credentials as c
 from ..actions import goto_page
 
 
-def test_example(page: Page) -> None:
+def test_write_review(page: Page) -> None:
     goto_page(page)
 
     page.locator("li").filter(has_text="Products").click()
